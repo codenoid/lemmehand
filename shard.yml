@@ -1,0 +1,17 @@
+name: toped
+version: 0.1.0
+
+authors:
+  - Rubi Jihantoro <jihantoro8@gmail.com>
+
+dependencies:
+  router:
+    github: tbrand/router.cr
+
+targets:
+  toped:
+    main: src/toped.cr
+
+crystal: 0.23.1
+
+license: MIT
