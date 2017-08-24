@@ -1,2 +1,2 @@
-# kuking
-Kuking proxy server, that's it
+# Lemmehand
+a Darn Fast Proxy Server, written in Crystal
