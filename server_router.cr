@@ -13,6 +13,7 @@ class ProfiledServer
         context.response.content_type = res.content_type.to_s
         context.response.status_code = res.status_code
         context.response.content_length = res.body.size
+        res.headers.each { |k, v| context.response.headers[k] = v }
         context.response.print res.body
         context
       }
