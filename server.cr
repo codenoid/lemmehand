@@ -14,12 +14,17 @@ server = HTTP::Server.new(port.to_i) do |context|
     params[k] = v
   end
   if params.has_key?("get")
-    res = HTTP::Client.get params["get"]
-    context.response.content_type = res.content_type.to_s
-    context.response.status_code = res.status_code
-    context.response.content_length = res.body.size
-    res.headers.each { |k, v| context.response.headers[k] = v }
-    context.response.print res.body
+    HTTP::Client.get(params["get"]) do |res|
+      context.response.content_type = res.content_type.to_s
+      context.response.status_code = res.status_code
+      res.headers.each do |k, v|
+        next if k == "Content-Encoding"
+        next if k == "Content-Length"
+        next if k == "Transfer-Encoding"
+        context.response.headers[k] = v
+      end
+      context.response.print res.body_io.gets_to_end
+    end
   else
     context.response.content_type = "text/plain"
     context.response.print "you must use GET method,ex.  yourserver.com/?get=http://yoururl.com/"
