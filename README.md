@@ -9,5 +9,5 @@ a Darn Fast Proxy Server, written in Crystal
 5. Test !, go to browser or use http client, http://example.com/?get=https://webtogo.com
 
 # Task & Todo
-- [ ] More Feature
+- [x] Tested
 - [ ] Documentation
