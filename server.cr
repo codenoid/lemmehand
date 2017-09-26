@@ -1,11 +1,11 @@
-require "http/server"
-require "http/client"
-require "option_parser"
+require "http/server" # from crystal
+require "http/client" # from crystal
+require "option_parser" # from crystal
 
-port = ""
+port = "" # port as string
 OptionParser.parse! do |parser|
   parser.banner = "Usage: salute [arguments]"
-  parser.on("-port", "--port=PATH", "Used PORT") { |uport| port = uport }
+  parser.on("-port", "--port=PORT", "Used PORT") { |uport| port = uport } # --port option
 end
 
 server = HTTP::Server.new(port.to_i) do |context|
@@ -31,6 +31,7 @@ server = HTTP::Server.new(port.to_i) do |context|
   end
 end
 
+# bad practice
 begin
   puts "Listening on http://127.0.0.1:#{port}"
   server.listen
